@@ -84,13 +84,13 @@ export default function Settings() {
 
     const { error } = await supabase
       .from('user_stats')
-      .upsert({
-        user_id: user.id,
+      .update({
         display_name: profile.display_name,
         city: profile.city,
         avatar_url: finalAvatarUrl,
         player_tag: newPlayerTag
-      }, { onConflict: 'user_id' });
+      })
+      .eq('user_id', user.id);
       
     if (error) {
       console.error('Update error:', error);
