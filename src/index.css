@@ -1,0 +1,83 @@
+@import "tailwindcss";
+
+@theme {
+  --color-neo-yellow: #FDF1D5;
+  --color-neo-pink: #F7D4DA;
+  --color-neo-green: #D1EAE0;
+  --color-neo-purple: #E0D4F0;
+  --color-neo-blue: #0A66C2;
+
+  --font-sans: Inter, sans-serif;
+  --font-display: Outfit, sans-serif;
+
+  --shadow-neo: 4px 4px 0px 0px rgba(0,0,0,1);
+  --shadow-neo-hover: 2px 2px 0px 0px rgba(0,0,0,1);
+}
+
+@layer base {
+  :root {
+    --color-bg: #f3f4f6;
+    --color-text: #000000;
+    --color-card-bg: #ffffff;
+    --color-yellow: #fde047;
+    --color-pink: #f9a8d4;
+    --color-green: #86efac;
+    --color-blue: #93c5fd;
+    --color-purple: #c4b5fd;
+  }
+
+  .theme-cyberpunk {
+    --color-bg: #0f172a;
+    --color-text: #f8fafc;
+    --color-card-bg: #1e293b;
+    --color-yellow: #fef08a; /* Neon Yellow */
+    --color-pink: #f472b6; /* Neon Pink */
+    --color-green: #4ade80; /* Neon Green */
+    --color-blue: #38bdf8; /* Neon Blue */
+    --color-purple: #a78bfa; /* Neon Purple */
+  }
+
+  .theme-darkmode {
+    --color-bg: #111827;
+    --color-text: #f3f4f6;
+    --color-card-bg: #1f2937;
+    --color-yellow: #4b5563;
+    --color-pink: #4b5563;
+    --color-green: #374151;
+    --color-blue: #374151;
+    --color-purple: #4b5563;
+  }
+
+  body {
+    background-color: var(--color-bg);
+    color: var(--color-text);
+    @apply font-sans antialiased;
+  }
+}
+
+@layer components {
+  .neo-box {
+    @apply border-4 border-black shadow-neo bg-white transition-all duration-200;
+  }
+  .neo-box-hover {
+    @apply border-4 border-black p-4 md:p-6 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)];
+    background-color: var(--color-card-bg);
+  }
+  .neo-button {
+    @apply font-display font-black uppercase tracking-wider px-4 md:px-6 py-2 md:py-3 border-4 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:-translate-y-1 hover:shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] active:translate-y-1 active:shadow-[0px_0px_0px_0px_rgba(0,0,0,1)] transition-all;
+  }
+  .neo-input {
+    @apply border-4 border-black p-2 md:p-3 focus:outline-none focus:ring-4 focus:ring-orange-500 shadow-[2px_2px_0px_0px_rgba(0,0,0,1)];
+    background-color: var(--color-card-bg);
+    color: var(--color-text);
+  }
+
+  /* Utility classes mapping to CSS vars */
+  .bg-neo-yellow { background-color: var(--color-yellow) !important; color: #000; }
+  .bg-neo-pink { background-color: var(--color-pink) !important; color: #000; }
+  .bg-neo-green { background-color: var(--color-green) !important; color: #000; }
+  .bg-neo-blue { background-color: var(--color-blue) !important; color: #000; }
+  .bg-neo-purple { background-color: var(--color-purple) !important; color: #000; }
+  .text-neo-yellow { color: var(--color-yellow) !important; }
+  .text-neo-blue { color: var(--color-blue) !important; }
+}
