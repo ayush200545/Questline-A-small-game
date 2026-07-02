@@ -10,6 +10,19 @@ export default function Leaderboard() {
 
   useEffect(() => {
     fetchUserDataAndLeaders();
+
+    // Set up Realtime Subscription for Leaderboard
+    const leaderboardSubscription = supabase
+      .channel('public:user_stats')
+      .on('postgres_changes', { event: '*', schema: 'public', table: 'user_stats' }, (payload) => {
+        console.log('Realtime XP Update detected!', payload);
+        fetchUserDataAndLeaders(); // Instantly refetch leaders when anyone levels up!
+      })
+      .subscribe();
+
+    return () => {
+      supabase.removeChannel(leaderboardSubscription);
+    };
   }, [activeTab]);
 
   const fetchUserDataAndLeaders = async () => {

@@ -33,6 +33,23 @@ export default function Dashboard() {
 
   useEffect(() => {
     fetchStats();
+
+    // Set up Realtime Subscriptions for Dashboard Live Updates
+    const dashboardSubscription = supabase
+      .channel('public:dashboard')
+      .on('postgres_changes', { event: '*', schema: 'public', table: 'user_stats' }, (payload) => {
+        console.log('Realtime user_stats update:', payload);
+        fetchStats(); // Refetch stats when user or opponent gets XP
+      })
+      .on('postgres_changes', { event: '*', schema: 'public', table: 'competitions' }, (payload) => {
+        console.log('Realtime duel update:', payload);
+        fetchStats(); // Refetch duels when opponent scores
+      })
+      .subscribe();
+
+    return () => {
+      supabase.removeChannel(dashboardSubscription);
+    };
   }, []);
 
   const fetchStats = async () => {
