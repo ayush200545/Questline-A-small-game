@@ -24,6 +24,7 @@
     --color-green: #86efac;
     --color-blue: #93c5fd;
     --color-purple: #c4b5fd;
+    --color-grid: #d1d5db; /* Grey dot for light mode */
   }
 
   .theme-cyberpunk {
@@ -35,6 +36,7 @@
     --color-green: #4ade80; /* Neon Green */
     --color-blue: #38bdf8; /* Neon Blue */
     --color-purple: #a78bfa; /* Neon Purple */
+    --color-grid: #1e293b; /* Dark grid for cyberpunk */
   }
 
   .theme-darkmode {
@@ -46,10 +48,15 @@
     --color-green: #374151;
     --color-blue: #374151;
     --color-purple: #4b5563;
+    --color-grid: #1f2937; /* Dark grid for dark mode */
   }
 
   body {
     background-color: var(--color-bg);
+    background-image: radial-gradient(var(--color-grid) 2px, transparent 2px);
+    background-size: 24px 24px;
+    background-position: 0 0;
+    
     color: var(--color-text);
     @apply font-sans antialiased;
   }
