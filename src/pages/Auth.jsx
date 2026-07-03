@@ -51,13 +51,13 @@ export default function Auth() {
 
   return (
     <div 
-      className="flex items-center justify-center min-h-[80vh] bg-cover bg-center relative"
+      className="flex items-center justify-center min-h-screen bg-cover bg-center bg-no-repeat relative"
       style={{ backgroundImage: `url('/images/auth_bg.png')` }}
     >
-      {/* Dark overlay to make the brutalist box pop */}
-      <div className="absolute inset-0 bg-black/40"></div>
+      {/* Dark overlay to make the brutalist box pop and blend edges */}
+      <div className="absolute inset-0 bg-black/60 backdrop-blur-sm"></div>
       
-      <div className="neo-box p-8 bg-neo-yellow w-full max-w-md animate-in fade-in slide-in-from-bottom-4 relative z-10">
+      <div className="neo-box p-8 bg-neo-yellow w-full max-w-md animate-in zoom-in duration-500 relative z-10 shadow-[8px_8px_0px_0px_rgba(0,0,0,1)]">
         <div className="text-center mb-8">
           <div className="w-12 h-12 bg-orange-500 rounded-full border-4 border-black flex items-center justify-center mx-auto mb-4">
             <span className="text-white font-bold text-xl italic">Q</span>

@@ -61,52 +61,32 @@ function App() {
   return (
     <div className={`min-h-screen font-sans text-black ${theme}`}>
       {session && <Navbar />}
-      <div className="max-w-6xl mx-auto p-4 md:p-8 pt-32 md:pt-36">
+      
+      {session ? (
+        <div className="max-w-6xl mx-auto p-4 md:p-8 pt-32 md:pt-36">
+          <Suspense fallback={<div className="font-display font-black text-2xl text-center mt-20">Loading...</div>}>
+            <Routes>
+              <Route path="/" element={<Dashboard />} />
+              <Route path="/journey" element={<Journey />} />
+              <Route path="/leaderboard" element={<Leaderboard />} />
+              <Route path="/settings" element={<Settings />} />
+              <Route path="/friends" element={<Friends />} />
+              <Route path="/shop" element={<Shop />} />
+              <Route path="/guilds" element={<Guilds />} />
+              <Route path="/badges" element={<Badges />} />
+              <Route path="*" element={<Navigate to="/" />} />
+            </Routes>
+          </Suspense>
+        </div>
+      ) : (
         <Suspense fallback={<div className="font-display font-black text-2xl text-center mt-20">Loading...</div>}>
           <Routes>
-            <Route 
-              path="/login" 
-              element={!session ? <Auth /> : <Navigate to="/" />} 
-            />
-            <Route 
-              path="/reset-password" 
-              element={<ResetPassword />} 
-            />
-            <Route 
-              path="/" 
-              element={session ? <Dashboard /> : <Navigate to="/login" />} 
-            />
-            <Route 
-              path="/journey" 
-              element={session ? <Journey /> : <Navigate to="/login" />} 
-            />
-            <Route 
-              path="/leaderboard" 
-              element={session ? <Leaderboard /> : <Navigate to="/login" />} 
-            />
-            <Route 
-              path="/settings" 
-              element={session ? <Settings /> : <Navigate to="/login" />} 
-            />
-            <Route 
-              path="/friends" 
-              element={session ? <Friends /> : <Navigate to="/login" />} 
-            />
-            <Route 
-              path="/shop" 
-              element={session ? <Shop /> : <Navigate to="/login" />} 
-            />
-            <Route 
-              path="/guilds" 
-              element={session ? <Guilds /> : <Navigate to="/login" />} 
-            />
-            <Route 
-              path="/badges" 
-              element={session ? <Badges /> : <Navigate to="/login" />} 
-            />
+            <Route path="/login" element={<Auth />} />
+            <Route path="/reset-password" element={<ResetPassword />} />
+            <Route path="*" element={<Navigate to="/login" />} />
           </Routes>
         </Suspense>
-      </div>
+      )}
     </div>
   );
 }
