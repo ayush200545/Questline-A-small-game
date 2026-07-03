@@ -112,8 +112,8 @@ export default function Shop() {
         
         {/* Item 1 */}
         <div className="neo-box flex flex-col bg-white border-4 border-black">
-          <div className="bg-neo-pink h-32 flex items-center justify-center border-b-4 border-black">
-            <Zap size={64} className="text-black" />
+          <div className="bg-neo-pink h-32 flex items-center justify-center border-b-4 border-black overflow-hidden relative">
+            <img src="/images/xp_booster.png" alt="XP Booster" className="absolute inset-0 w-full h-full object-cover mix-blend-multiply" />
           </div>
           <div className="p-4 flex-1 flex flex-col">
             <h3 className="font-display font-black text-2xl mb-2">XP Booster</h3>

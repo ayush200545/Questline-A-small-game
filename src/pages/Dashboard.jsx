@@ -180,6 +180,12 @@ export default function Dashboard() {
 
   return (
     <div className="space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-500 relative">
+      
+      {/* Dashboard Banner Image */}
+      <div className="neo-box border-4 border-black w-full h-48 md:h-64 overflow-hidden relative mb-8">
+        <img src="/images/dashboard_banner.png" alt="Questline Realm" className="absolute inset-0 w-full h-full object-cover" />
+      </div>
+
       <div>
         <div className="text-orange-500 font-bold uppercase text-sm tracking-wider flex items-center gap-2 mb-2">
           <span>✦</span> TODAY'S BOARD
