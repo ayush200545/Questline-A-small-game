@@ -25,7 +25,15 @@ export default function Auth() {
         setMessage('Registration successful! Please check your email to verify your account.');
       }
     } catch (err) {
-      setError(err.message);
+      console.error("Auth error:", err);
+      let errorMsg = "An unexpected error occurred.";
+      if (typeof err === 'string') errorMsg = err;
+      else if (err.message) errorMsg = err.message;
+      else if (err.error_description) errorMsg = err.error_description;
+      else if (err.error) errorMsg = typeof err.error === 'string' ? err.error : JSON.stringify(err.error);
+      else errorMsg = JSON.stringify(err);
+      
+      setError(errorMsg);
     } finally {
       setLoading(false);
     }
@@ -42,7 +50,13 @@ export default function Auth() {
       redirectTo: `${window.location.origin}/reset-password`,
     });
     if (error) {
-      setError(error.message);
+      console.error("Forgot password error:", error);
+      let errorMsg = "Failed to send reset email.";
+      if (typeof error === 'string') errorMsg = error;
+      else if (error.message) errorMsg = error.message;
+      else errorMsg = JSON.stringify(error);
+      
+      setError(errorMsg);
     } else {
       setMessage('Password reset link sent to your email!');
     }
@@ -71,8 +85,8 @@ export default function Auth() {
         </div>
 
         {error && (
-          <div className="mb-6 p-3 bg-red-100 border-2 border-black font-bold text-sm text-red-600">
-            {error}
+          <div className="mb-6 p-3 bg-red-100 border-2 border-black font-bold text-sm text-red-600 break-words">
+            {typeof error === 'object' ? JSON.stringify(error) : error}
           </div>
         )}
         {message && (
